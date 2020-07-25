@@ -6,8 +6,8 @@
 namespace udsc2::api
 {
 
-int phonemeDifference(const api::PhonemeProperties pLeft, const api::PhonemeProperties pRight,
-                      const api::PhonemeProperties ignore)
+int phoneme_difference(const api::PhonemeProperties pLeft, const api::PhonemeProperties pRight,
+                       const api::PhonemeProperties ignore)
 {
     constexpr auto popcount = [](int v) -> int {
         // This algorithm is optimized for 32 bit.
@@ -20,12 +20,12 @@ int phonemeDifference(const api::PhonemeProperties pLeft, const api::PhonemeProp
 
     // These are tecnical 'Phonemes' such as start, end or whitespace. Only comparison that
     // we need is whether their types are same.
-    if (pLeft.Type < 8 || pRight.Type < 8) {
-        return pLeft.Type == pRight.Type ? 0 : std::numeric_limits<int>::max();
+    if (pLeft.type < 8 || pRight.type < 8) {
+        return pLeft.type == pRight.type ? 0 : std::numeric_limits<int>::max();
     }
 
     // Custom comparison methods that is defined by extension writers.
-    for (auto f : udsc2::Phoneme::Comparators) {
+    for (auto f : udsc2::Phoneme::comparators) {
         int i = f(pLeft, pRight, ignore);
         if (i != -1) return i;
     }
@@ -33,39 +33,39 @@ int phonemeDifference(const api::PhonemeProperties pLeft, const api::PhonemeProp
     // If types are not same directly get out. Note that this is not before the custom
     // comparators because extensions may need cross-type differences (such as vowel-semivowel
     // comparison).
-    if (pLeft.Type != pRight.Type) {
+    if (pLeft.type != pRight.type) {
         return std::numeric_limits<int>::max();
     }
 
     int ret = 0;
-    switch (pLeft.Type) {
+    switch (pLeft.type) {
     case api::TYP_VOWEL:
-        if (ignore.Roundness == api::ROU_NONE && pLeft.Roundness != pRight.Roundness) {
+        if (ignore.roundness == api::ROU_NONE && pLeft.roundness != pRight.roundness) {
             return std::numeric_limits<int>::max();
         }
 
-        if (ignore.Height == api::HEI_NONE) {
-            ret += std::abs(pLeft.Height - pRight.Height);
+        if (ignore.height == api::HEI_NONE) {
+            ret += std::abs(pLeft.height - pRight.height);
         }
 
-        if (ignore.Backness == api::BAC_NONE) {
-            ret += std::abs(pLeft.Backness - pRight.Backness);
+        if (ignore.backness == api::BAC_NONE) {
+            ret += std::abs(pLeft.backness - pRight.backness);
         }
     case api::TYP_CONSONANT:
-        if (ignore.Release == api::REL_NORMAL && pLeft.Release != pRight.Release) {
-            if (pLeft.Release == api::REL_NORMAL) {
+        if (ignore.release == api::REL_NORMAL && pLeft.release != pRight.release) {
+            if (pLeft.release == api::REL_NORMAL) {
                 ret += 1;
             } else {
                 return std::numeric_limits<int>::max();
             }
         }
 
-        if (ignore.Voicing == api::VOI_NONE && pLeft.Voicing != pRight.Voicing) {
+        if (ignore.voicing == api::VOI_NONE && pLeft.voicing != pRight.voicing) {
             ++ret;
         }
 
-        ret += popcount(( pLeft.PoA ^ pRight.PoA ) & ~ignore.PoA);
-        ret += popcount(( pLeft.MoA ^ pRight.MoA ) & ~ignore.MoA);
+        ret += popcount(( pLeft.poa ^ pRight.poa ) & ~ignore.poa);
+        ret += popcount(( pLeft.moa ^ pRight.moa ) & ~ignore.moa);
 
         return ret;
     }

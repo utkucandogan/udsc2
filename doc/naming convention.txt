@@ -1,0 +1,4 @@
+PascalCase				: types, classes, structs
+camelCase				: variables, member variables; namespaces
+snake_case				: functions
+SCREAMING_SNAKE_CASE	: constants

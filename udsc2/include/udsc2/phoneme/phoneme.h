@@ -139,34 +139,52 @@ extern "C" {
     const uint8_t ROU_RESERVED  = 2;
     const uint8_t ROU_ROUNDED   = 3;
 
-    typedef struct PhonemeProperties // 24-32 Byte
+    typedef struct PhonemeProperties    // 24-32 Byte
     {
-        uint8_t Type       : 5;
-        uint8_t Reserved_1 : 3; // 1 Byte
-        uint8_t Voicing    : 4;
-        uint8_t Release    : 4; // 1 Byte
-        uint8_t Height     : 3;
-        uint8_t Backness   : 3;
-        uint8_t Roundness  : 2; // 1 Byte
-        uint8_t Reserved_2;     // 1 Byte
-        uint16_t PoA;           // 2 Byte
-        uint16_t MoA;           // 2 Byte
-        uint16_t Reserved_3;    // 2 Byte
-        uint16_t PrivateUse_1;  // 2 Byte
-        uint32_t PrivateUse_2;  // 4 Byte
-        void* Reserved_4;       // 4-8 Byte
-        void* PrivateUse_3;     // 4-8 Byte
+        uint8_t type       : 5;
+        uint8_t reserved_1 : 3;         // 1 Byte
+        uint8_t voicing    : 4;
+        uint8_t release    : 4;         // 1 Byte
+        uint8_t height     : 3;
+        uint8_t backness   : 3;
+        uint8_t roundness  : 2;         // 1 Byte
+        uint8_t reserved_2;             // 1 Byte
+        uint16_t poa;                   // 2 Byte
+        uint16_t moa;                   // 2 Byte
+        uint16_t reserved_3;            // 2 Byte
+        uint16_t privateUse_1;          // 2 Byte
+        uint32_t privateUse_2;          // 4 Byte
+        void* reserved_4;               // 4-8 Byte
+        void* privateUse_3;             // 4-8 Byte
     } PhonemeProperties;
 
     typedef struct Phoneme
     {
-        PhonemeProperties Properties;
-        const char32_t* String;
+        PhonemeProperties properties;
+        const char32_t* string;
     } Phoneme;
 
-    UDSC2_API int phonemeDifference(const api::PhonemeProperties pLeft,
-                                    const api::PhonemeProperties pRight,
-                                    const api::PhonemeProperties ignore);
+    const PhonemeProperties PHO_NONE = {
+        TYP_NONE,
+        0u,
+        VOI_NONE,
+        REL_NORMAL,
+        HEI_NONE,
+        BAC_NONE,
+        ROU_NONE,
+        0u,
+        POA_NONE,
+        MOA_NONE,
+        0u,
+        0u,
+        0u,
+        NULL,
+        NULL
+    };
+
+    UDSC2_API int phoneme_difference(const api::PhonemeProperties pLeft,
+                                     const api::PhonemeProperties pRight,
+                                     const api::PhonemeProperties ignore);
 
 #ifdef __cplusplus
     }

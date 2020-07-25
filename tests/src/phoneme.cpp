@@ -12,11 +12,11 @@ namespace udsc2::tests
 
 TEST_CASE("Testing phoneme creation without ipa.", "[Phoneme::create]")
 {
-    Phoneme::PrefixHandlers.clear();
-    Phoneme::SuffixHandlers.clear();
-    Phoneme::Phonemes.clear();
+    Phoneme::prefixHandlers.clear();
+    Phoneme::suffixHandlers.clear();
+    Phoneme::phonemes.clear();
 
-    auto k = Phoneme { U"k", api::PhonemeProperties {
+    auto k = Phoneme { U"k", Phoneme::Properties {
         api::TYP_CONSONANT,
         0u,
         api::VOI_VOICELESS,
@@ -34,7 +34,7 @@ TEST_CASE("Testing phoneme creation without ipa.", "[Phoneme::create]")
         nullptr
     } };
 
-    auto a = Phoneme { U"a", api::PhonemeProperties {
+    auto a = Phoneme { U"a", Phoneme::Properties {
         api::TYP_VOWEL,
         0u,
         api::VOI_MODAL_VOICED,
@@ -52,7 +52,7 @@ TEST_CASE("Testing phoneme creation without ipa.", "[Phoneme::create]")
         nullptr
     } };
 
-    auto m = Phoneme { U"m", api::PhonemeProperties {
+    auto m = Phoneme { U"m", Phoneme::Properties {
         api::TYP_CONSONANT,
         0u,
         api::VOI_MODAL_VOICED,
@@ -70,7 +70,7 @@ TEST_CASE("Testing phoneme creation without ipa.", "[Phoneme::create]")
         nullptr
     } };
 
-    auto b = Phoneme { U"b", api::PhonemeProperties {
+    auto b = Phoneme { U"b", Phoneme::Properties {
         api::TYP_CONSONANT,
         0u,
         api::VOI_MODAL_VOICED,
@@ -88,7 +88,7 @@ TEST_CASE("Testing phoneme creation without ipa.", "[Phoneme::create]")
         nullptr
     } };
 
-    auto t = Phoneme { U"t", api::PhonemeProperties {
+    auto t = Phoneme { U"t", Phoneme::Properties {
         api::TYP_CONSONANT,
         0u,
         api::VOI_VOICELESS,
@@ -106,7 +106,7 @@ TEST_CASE("Testing phoneme creation without ipa.", "[Phoneme::create]")
         nullptr
     } };
 
-    auto sh = Phoneme { U"ʃ", api::PhonemeProperties {
+    auto sh = Phoneme { U"ʃ", Phoneme::Properties {
         api::TYP_CONSONANT,
         0u,
         api::VOI_VOICELESS,
@@ -124,7 +124,7 @@ TEST_CASE("Testing phoneme creation without ipa.", "[Phoneme::create]")
         nullptr
     } };
 
-    auto r = Phoneme { U"ɾ", api::PhonemeProperties {
+    auto r = Phoneme { U"ɾ", Phoneme::Properties {
         api::TYP_CONSONANT,
         0u,
         api::VOI_MODAL_VOICED,
@@ -142,14 +142,13 @@ TEST_CASE("Testing phoneme creation without ipa.", "[Phoneme::create]")
         nullptr
     } };
 
-    Phoneme::Phonemes.push_back(k);
-    Phoneme::Phonemes.push_back(a);
-    Phoneme::Phonemes.push_back(m);
-    Phoneme::Phonemes.push_back(b);
-    Phoneme::Phonemes.push_back(t);
-    Phoneme::Phonemes.push_back(sh);
-    Phoneme::Phonemes.push_back(r);
-
+    Phoneme::phonemes.push_back(k);
+    Phoneme::phonemes.push_back(a);
+    Phoneme::phonemes.push_back(m);
+    Phoneme::phonemes.push_back(b);
+    Phoneme::phonemes.push_back(t);
+    Phoneme::phonemes.push_back(sh);
+    Phoneme::phonemes.push_back(r);
 
     auto text = std::u32string { U"kambatʃaɾ" };
     std::vector<Phoneme> phonemes;

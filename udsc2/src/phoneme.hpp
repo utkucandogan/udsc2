@@ -13,61 +13,49 @@ namespace udsc2
 class Phoneme
 {
 public:
-    std::u32string String;
-    api::PhonemeProperties Properties;
+    using Properties = api::PhonemeProperties;
 
-    Phoneme(std::u32string_view string, api::PhonemeProperties properties)
-        : String(string), Properties(properties)
+    std::u32string string;
+    Properties properties;
+
+    Phoneme(std::u32string_view string, Properties properties)
+        : string(string), properties(properties)
     { }
 
-    Phoneme(uint8_t type) : String(U""), Properties {
-        type,
-        0u,
-        api::VOI_NONE,
-        api::REL_NORMAL,
-        api::HEI_NONE,
-        api::BAC_NONE,
-        api::ROU_NONE,
-        0u,
-        api::POA_NONE,
-        api::MOA_NONE,
-        0u,
-        0u,
-        0u,
-        nullptr,
-        nullptr
-    } { }
+    Phoneme() : Phoneme(U"", api::PHO_NONE) { }
 
-    Phoneme() : Phoneme(api::TYP_NONE) { }
-
-    int difference(const api::PhonemeProperties p, const api::PhonemeProperties ignore) const noexcept
+    Phoneme(uint8_t type) : Phoneme()
     {
-        return phonemeDifference(Properties, p, ignore);
+        properties.type = type;
+    }
+
+    int difference(const Properties p, const Properties ignore) const noexcept
+    {
+        return phoneme_difference(properties, p, ignore);
     }
 
     bool operator==(const Phoneme& p) const noexcept
     {
-        return phonemeDifference(Properties, p.Properties, None.Properties) == 0;
+        return phoneme_difference(properties, p.properties, NONE.properties) == 0;
     }
 
     bool operator!=(const Phoneme& p) const noexcept
     {
-        return phonemeDifference(Properties, p.Properties, None.Properties) != 0;
+        return phoneme_difference(properties, p.properties, NONE.properties) != 0;
     }
 
 #pragma region Static Members
 public:
     using Creator    = std::function<Phoneme(const std::u32string_view, size_t&)>;
     using Modifier   = std::function<bool(Phoneme&, const std::u32string_view, size_t&)>;
-    using Comparator = std::function<int(const api::PhonemeProperties, const api::PhonemeProperties,
-                                         const api::PhonemeProperties)>;
+    using Comparator = std::function<int(const Properties, const Properties, const Properties)>;
 
-    static std::vector<Phoneme> Phonemes;
-    static std::vector<Creator> PrefixHandlers;
-    static std::vector<Modifier> SuffixHandlers;
-    static std::vector<Comparator> Comparators;
+    static std::vector<Phoneme> phonemes;
+    static std::vector<Creator> prefixHandlers;
+    static std::vector<Modifier> suffixHandlers;
+    static std::vector<Comparator> comparators;
 
-    static const Phoneme None;
+    static const Phoneme NONE;
 
     static Phoneme create(const std::u32string_view s, size_t& i);
 };
