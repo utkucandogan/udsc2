@@ -93,7 +93,7 @@ bool RelativeArticulation::modifier(Phoneme& p, const std::u32string_view s, siz
     return true;
 }
 
-bool RelativeArticulation::procedural_modifier(Phoneme& p, const Phoneme::Properties example, const Phoneme::Properties ignore, size_t maxLength)
+bool RelativeArticulation::procedural_modifier(Phoneme& p, Phoneme::Properties example, Phoneme::Properties ignore, size_t maxLength)
 {
     if (p.properties.voicing == api::VOI_MODAL_VOICED && example.voicing == api::VOI_VOICELESS) {
         p.properties.voicing = api::VOI_VOICELESS;
@@ -240,10 +240,10 @@ bool RelativeArticulation::lower(Phoneme::Properties& p)
 {
     if (p.type == api::TYP_CONSONANT) {
         static constexpr uint16_t mask = api::MOA_STOP
-                                | api::MOA_FRICATIVE
-                                | api::MOA_APPROXIMANT
-                                | api::MOA_FLAP
-                                | api::MOA_TRILL;
+                                       | api::MOA_FRICATIVE
+                                       | api::MOA_APPROXIMANT
+                                       | api::MOA_FLAP
+                                       | api::MOA_TRILL;
 
         auto temp1 = p.moa & mask;
         auto temp2 = p.moa & ~mask;

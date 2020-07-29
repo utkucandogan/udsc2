@@ -9,7 +9,7 @@ class Prenasal
 {
 public:
     static Phoneme creator(const std::u32string_view s, size_t& i);
-    static Phoneme procedural_creator(const Phoneme::Properties example, const Phoneme::Properties ignore, int maxLenght);
+    static Phoneme procedural_creator(Phoneme::Properties example, Phoneme::Properties ignore, int maxLength);
     static bool register_extension();
 };
 

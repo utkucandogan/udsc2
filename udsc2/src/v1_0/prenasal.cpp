@@ -27,15 +27,14 @@ Phoneme Prenasal::creator(const std::u32string_view s, size_t& i)
     }
 }
 
-Phoneme Prenasal::procedural_creator(const Phoneme::Properties example, const Phoneme::Properties ignore, int maxLenght)
+Phoneme Prenasal::procedural_creator(Phoneme::Properties example, Phoneme::Properties ignore, int maxLength)
 {
     if (example.type != api::TYP_CONSONANT || !( example.moa & api::MOA_PRENASAL ) ) {
         return Phoneme::NONE;
     }
 
-    auto example_clone = example;
-    example_clone.moa &= ~api::MOA_PRENASAL;
-    auto right = Procedural::generate(example_clone, ignore, maxLenght - 1);
+    example.moa &= ~api::MOA_PRENASAL;
+    auto right = Procedural::generate(example, ignore, maxLength - 1);
     if (right == Phoneme::NONE) {
         return Phoneme::NONE;
     }

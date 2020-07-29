@@ -88,7 +88,7 @@ public:
 public:
     using Creator    = std::function<Phoneme(const std::u32string_view, size_t&)>;
     using Modifier   = std::function<bool(Phoneme&, const std::u32string_view, size_t&)>;
-    using Comparator = std::function<int(const Properties, const Properties, const Properties)>;
+    using Comparator = std::function<int(Properties, Properties, Properties)>;
 
     static std::vector<Phoneme> phonemes;
     static std::vector<Creator> prefixHandlers;

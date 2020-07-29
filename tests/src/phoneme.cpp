@@ -7,6 +7,7 @@
 #include "v1_0/ipa.hpp"
 #include "v1_0/prenasal.hpp"
 #include "v1_0/relative_articulation.hpp"
+#include "v1_0/tie.hpp"
 
 #endif
 
@@ -183,16 +184,20 @@ TEST_CASE("Testing v1_0 phoneme creation.", "[Phoneme::create]")
     v1_0::Ipa::register_extension();
     v1_0::Prenasal::register_extension();
     v1_0::RelativeArticulation::register_extension();
+    v1_0::Tie::register_extension();
 
-    auto text = std::u32string { U"kam̥baⁿtʃaɾ" };
+    auto text = std::u32string { U"ʔ͡kam̥baⁿt͡ʃaɾ" };
     std::vector<Phoneme> phonemes;
 
     std::vector<Phoneme> supposedTo {
-        k, a, m, b, a, t, sh, a, r
+        k, a, m, b, a, sh, a, r
     };
 
+    supposedTo[0].properties.voicing = api::VOI_GLOTTAL_CLOSURE;
     supposedTo[2].properties.voicing = api::VOI_VOICELESS;
     supposedTo[5].properties.moa |= api::MOA_PRENASAL;
+    supposedTo[5].properties.moa |= api::MOA_STOP;
+
 
     for (size_t i = 0 ; i < text.size() ; ) {
         phonemes.push_back(udsc2::Phoneme::create(text, i));

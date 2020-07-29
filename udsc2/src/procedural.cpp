@@ -10,7 +10,7 @@ std::vector<Procedural::Creator> Procedural::prefixHandlers;
 std::vector<Procedural::Modifier> Procedural::suffixHandlers;
 int Procedural::maxDifference = 10;
 
-Phoneme Procedural::generate(const Phoneme::Properties example, const Phoneme::Properties ignore, int maxLenght)
+Phoneme Procedural::generate(Phoneme::Properties example, Phoneme::Properties ignore, int maxLenght)
 {
     if (maxLenght <= 0) {
         return Phoneme::NONE;
