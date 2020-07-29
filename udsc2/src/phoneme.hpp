@@ -29,6 +29,46 @@ public:
         properties.type = type;
     }
 
+    Phoneme(std::u32string_view string, uint8_t voicing, uint16_t poa, uint16_t moa)
+        : Phoneme(string, Properties {
+            api::TYP_CONSONANT,
+            0u,
+            voicing,
+            api::REL_NORMAL,
+            api::HEI_NONE,
+            api::BAC_NONE,
+            api::ROU_NONE,
+            0u,
+            poa,
+            moa,
+            0u,
+            0u,
+            0u,
+            nullptr,
+            nullptr
+        })
+    { }
+
+    Phoneme(std::u32string_view string, uint8_t voicing, uint8_t height, uint8_t backness, uint8_t roundness)
+        : Phoneme(string, Properties {
+            api::TYP_VOWEL,
+            0u,
+            voicing,
+            api::REL_NORMAL,
+            height,
+            backness,
+            roundness,
+            0u,
+            api::POA_NONE,
+            api::MOA_NONE,
+            0u,
+            0u,
+            0u,
+            nullptr,
+            nullptr
+        })
+    { }
+
     int difference(const Properties p, const Properties ignore) const noexcept
     {
         return phoneme_difference(properties, p, ignore);

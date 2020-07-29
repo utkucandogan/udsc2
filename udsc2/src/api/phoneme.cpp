@@ -1,5 +1,6 @@
 #include <udsc2/phoneme/phoneme.h>
 #include "phoneme.hpp"
+#include "util/bit.h"
 
 #include <limits>
 
@@ -9,15 +10,6 @@ namespace udsc2::api
 int phoneme_difference(const api::PhonemeProperties pLeft, const api::PhonemeProperties pRight,
                        const api::PhonemeProperties ignore)
 {
-    constexpr auto popcount = [](int v) -> int {
-        // This algorithm is optimized for 32 bit.
-        // I have no idea how this works. Credit goes to Sean Eron Anderson.
-        // http://graphics.stanford.edu/~seander/bithacks.html
-        v = v - ( ( v >> 1 ) & 0x55555555 );
-        v = ( v & 0x33333333 ) + ( ( v >> 2 ) & 0x33333333 );
-        return ( ( v + ( v >> 4 ) & 0xF0F0F0F ) * 0x1010101 ) >> 24;
-    };
-
     // These are tecnical 'Phonemes' such as start, end or whitespace. Only comparison that
     // we need is whether their types are same.
     if (pLeft.type < 8 || pRight.type < 8) {
@@ -64,8 +56,8 @@ int phoneme_difference(const api::PhonemeProperties pLeft, const api::PhonemePro
             ++ret;
         }
 
-        ret += popcount(( pLeft.poa ^ pRight.poa ) & ~ignore.poa);
-        ret += popcount(( pLeft.moa ^ pRight.moa ) & ~ignore.moa);
+        ret += util::popcount(( pLeft.poa ^ pRight.poa ) & ~ignore.poa);
+        ret += util::popcount(( pLeft.moa ^ pRight.moa ) & ~ignore.moa);
 
         return ret;
     }

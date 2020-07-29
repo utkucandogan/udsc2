@@ -35,6 +35,7 @@ Phoneme Phoneme::create(const std::u32string_view s, size_t& i)
         i += ret.string.size();
     } else {
         ret = Phoneme { s.substr(i++, 1), Phoneme::NONE.properties };
+        ret.properties.type = api::TYP_PHONEME_UNKNOWN;
     }
 
     // This loops for all custom suffix handlers. Handlers should return false
