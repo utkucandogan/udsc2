@@ -9,9 +9,6 @@
 #include "v1_0/relative_articulation.hpp"
 #include "v1_0/tie.hpp"
 
-#endif
-
-#ifndef UDSC2_SHARED
 namespace udsc2::tests
 {
 
