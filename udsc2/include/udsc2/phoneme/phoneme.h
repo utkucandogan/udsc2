@@ -14,148 +14,181 @@ extern "C" {
 #endif // __cplusplus
 
     // Phoneme Type
-    const uint8_t TYP_NONE               = 0;
-    const uint8_t TYP_START              = 1;
-    const uint8_t TYP_END                = 2;
-    const uint8_t TYP_WHITESPACE         = 3;
-    const uint8_t TYP_RESERVED_1         = 4;
-    const uint8_t TYP_RESERVED_2         = 5;
-    const uint8_t TYP_RESERVED_3         = 6;
-    const uint8_t TYP_RESERVED_4         = 7;
-    const uint8_t TYP_PHONEME_UNKNOWN    = 8;
-    const uint8_t TYP_CONSONANT          = 9;
-    const uint8_t TYP_VOWEL              = 10;
-    const uint8_t TYP_PHONEME_RESERVED_1 = 11;
-    const uint8_t TYP_PHONEME_RESERVED_2 = 12;
-    const uint8_t TYP_PHONEME_RESERVED_3 = 13;
-    const uint8_t TYP_PHONEME_RESERVED_4 = 14;
-    const uint8_t TYP_PHONEME_RESERVED_5 = 15;
-    const uint8_t TYP_PRIVATE_USE_1      = 16;
-    const uint8_t TYP_PRIVATE_USE_16     = 31;
+    enum TYP
+    {
+        TYP_NONE               = 0,
+        TYP_START              = 1,
+        TYP_END                = 2,
+        TYP_WHITESPACE         = 3,
+        TYP_RESERVED_1         = 4,
+        TYP_RESERVED_2         = 5,
+        TYP_RESERVED_3         = 6,
+        TYP_RESERVED_4         = 7,
+        TYP_PHONEME_UNKNOWN    = 8,
+        TYP_CONSONANT          = 9,
+        TYP_VOWEL              = 10,
+        TYP_PHONEME_RESERVED_1 = 11,
+        TYP_PHONEME_RESERVED_2 = 12,
+        TYP_PHONEME_RESERVED_3 = 13,
+        TYP_PHONEME_RESERVED_4 = 14,
+        TYP_PHONEME_RESERVED_5 = 15,
+        TYP_PRIVATE_USE_1      = 16,
+        TYP_PRIVATE_USE_16     = 31
+    };
 
     // Voicing
-    const uint8_t VOI_NONE            = 0;
-    const uint8_t VOI_VOICELESS       = 1;
-    const uint8_t VOI_BREATHY         = 2;
-    const uint8_t VOI_SLACK           = 3;
-    const uint8_t VOI_MODAL_VOICED    = 4;
-    const uint8_t VOI_STIFF           = 5;
-    const uint8_t VOI_CREAKY          = 6;
-    const uint8_t VOI_GLOTTAL_CLOSURE = 7;
+    enum VOI
+    {
+        VOI_NONE            = 0,
+        VOI_VOICELESS       = 1,
+        VOI_BREATHY         = 2,
+        VOI_SLACK           = 3,
+        VOI_MODAL_VOICED    = 4,
+        VOI_STIFF           = 5,
+        VOI_CREAKY          = 6,
+        VOI_GLOTTAL_CLOSURE = 7
+    };
 
     // Release
-    const uint8_t REL_NORMAL                     = 0;
-    const uint8_t REL_NO_AUDIBLE_RELEASE         = 1;
-    const uint8_t REL_ASPIRATED                  = 2;
-    const uint8_t REL_NASAL                      = 3;
-    const uint8_t REL_LATERAL                    = 4;
-    const uint8_t REL_VOICELESS_DENTAL_FRICATIVE = 5;
-    const uint8_t REL_VOICELESS_VELAR_FRICATIVE  = 6;
-    const uint8_t REL_MID_CENTRAL_VOWEL          = 7;
+    enum REL
+    {
+        REL_NORMAL                     = 0,
+        REL_NO_AUDIBLE_RELEASE         = 1,
+        REL_ASPIRATED                  = 2,
+        REL_NASAL                      = 3,
+        REL_LATERAL                    = 4,
+        REL_VOICELESS_DENTAL_FRICATIVE = 5,
+        REL_VOICELESS_VELAR_FRICATIVE  = 6,
+        REL_MID_CENTRAL_VOWEL          = 7
+    };
 
     // Place Of Articulation
-    const uint16_t POA_NONE            = 0;
-    const uint16_t POA_BILABIAL        = 1 << 0;
-    const uint16_t POA_LABIODENTAL     = 1 << 1;
-    const uint16_t POA_LINGUOLABIAL    = 1 << 2;
-    const uint16_t POA_DENTAL          = 1 << 3;
-    const uint16_t POA_ALVEOLAR        = 1 << 4;
-    const uint16_t POA_PALATOALVEOLAR  = 1 << 5;
-    const uint16_t POA_RETROFLEX       = 1 << 6;
-    const uint16_t POA_ALVEOLO_PALATAL = 1 << 7;
-    const uint16_t POA_PALATAL         = 1 << 8;
-    const uint16_t POA_VELAR           = 1 << 9;
-    const uint16_t POA_UVULAR          = 1 << 10;
-    const uint16_t POA_PHARYNGEAL      = 1 << 11;
-    const uint16_t POA_GLOTTAL         = 1 << 12;
-    const uint16_t POA_RESERVED_1      = 1 << 13;
-    const uint16_t POA_RESERVED_2      = 1 << 14;
-    const uint16_t POA_RESERVED_3      = 1 << 15;
+    enum POA
+    {
+        POA_NONE            = 0,
+        POA_BILABIAL        = 1 << 0,
+        POA_LABIODENTAL     = 1 << 1,
+        POA_LINGUOLABIAL    = 1 << 2,
+        POA_DENTAL          = 1 << 3,
+        POA_ALVEOLAR        = 1 << 4,
+        POA_PALATOALVEOLAR  = 1 << 5,
+        POA_RETROFLEX       = 1 << 6,
+        POA_ALVEOLO_PALATAL = 1 << 7,
+        POA_PALATAL         = 1 << 8,
+        POA_VELAR           = 1 << 9,
+        POA_UVULAR          = 1 << 10,
+        POA_PHARYNGEAL      = 1 << 11,
+        POA_GLOTTAL         = 1 << 12,
+        POA_RESERVED_1      = 1 << 13,
+        POA_RESERVED_2      = 1 << 14,
+        POA_RESERVED_3      = 1 << 15,
 
-    const uint16_t POA_LABIAL    = POA_BILABIAL
-                                 | POA_LABIODENTAL
-                                 | POA_LINGUOLABIAL;
+        POA_LABIAL    = POA_BILABIAL
+                      | POA_LABIODENTAL
+                      | POA_LINGUOLABIAL,
 
-    const uint16_t POA_CORONAL   = POA_LINGUOLABIAL
-                                 | POA_DENTAL
-                                 | POA_ALVEOLAR
-                                 | POA_PALATOALVEOLAR
-                                 | POA_RETROFLEX
-                                 | POA_ALVEOLO_PALATAL;
+        POA_CORONAL   = POA_LINGUOLABIAL
+                      | POA_DENTAL
+                      | POA_ALVEOLAR
+                      | POA_PALATOALVEOLAR
+                      | POA_RETROFLEX
+                      | POA_ALVEOLO_PALATAL,
 
-    const uint16_t POA_DORSAL    = POA_ALVEOLO_PALATAL
-                                 | POA_PALATAL
-                                 | POA_VELAR
-                                 | POA_UVULAR;
+        POA_DORSAL    = POA_ALVEOLO_PALATAL
+                      | POA_PALATAL
+                      | POA_VELAR
+                      | POA_UVULAR,
 
-    const uint16_t POA_LARYNGEAL = POA_UVULAR
-                                 | POA_PHARYNGEAL
-                                 | POA_GLOTTAL;
+        POA_LARYNGEAL = POA_UVULAR
+                      | POA_PHARYNGEAL
+                      | POA_GLOTTAL
+    };
 
     // Manner Of Articulation
-    const uint16_t MOA_NONE        = 0;
-    const uint16_t MOA_NASAL       = 1 << 0;
-    const uint16_t MOA_STOP        = 1 << 1;
-    const uint16_t MOA_FRICATIVE   = 1 << 2;
-    const uint16_t MOA_AFFRICATE   = 1 << 3;
-    const uint16_t MOA_APPROXIMANT = 1 << 4;
-    const uint16_t MOA_TAP         = 1 << 5;
-    const uint16_t MOA_TRILL       = 1 << 6;
-    const uint16_t MOA_SIBILANT    = 1 << 7;
-    const uint16_t MOA_LATERAL     = 1 << 8;
-    const uint16_t MOA_LIQUID      = 1 << 9;
-    const uint16_t MOA_RHOTIC      = 1 << 10;
-    const uint16_t MOA_EJECTIVE    = 1 << 11;
-    const uint16_t MOA_IMPLOSIVE   = 1 << 12;
-    const uint16_t MOA_CLICK       = 1 << 13;
-    const uint16_t MOA_PRENASAL    = 1 << 14;
-    const uint16_t MOA_RESERVED_1  = 1 << 15;
+    enum MOA
+    {
+        MOA_NONE        = 0,
+        MOA_NASAL       = 1 << 0,
+        MOA_STOP        = 1 << 1,
+        MOA_FRICATIVE   = 1 << 2,
+        MOA_AFFRICATE   = 1 << 3,
+        MOA_APPROXIMANT = 1 << 4,
+        MOA_TAP         = 1 << 5,
+        MOA_TRILL       = 1 << 6,
+        MOA_SIBILANT    = 1 << 7,
+        MOA_LATERAL     = 1 << 8,
+        MOA_LIQUID      = 1 << 9,
+        MOA_RHOTIC      = 1 << 10,
+        MOA_EJECTIVE    = 1 << 11,
+        MOA_IMPLOSIVE   = 1 << 12,
+        MOA_CLICK       = 1 << 13,
+        MOA_PRENASAL    = 1 << 14,
+        MOA_RESERVED_1  = 1 << 15,
 
-    const uint16_t MOA_FLAP              = MOA_TAP;
-    const uint16_t MOA_TAPPED_FRICATIVE  = MOA_TAP
-                                         | MOA_FRICATIVE;
-    const uint16_t MOA_TRILLED_FRICATIVE = MOA_TRILL
-                                         | MOA_FRICATIVE;
+        MOA_FLAP              = MOA_TAP,
+        MOA_TAPPED_FRICATIVE  = MOA_TAP
+                              | MOA_FRICATIVE,
+        MOA_TRILLED_FRICATIVE = MOA_TRILL
+                              | MOA_FRICATIVE,
+    };
 
     // Height, Backness and Roundness
-    const uint8_t HEI_NONE       = 0;
-    const uint8_t HEI_CLOSE      = 1;
-    const uint8_t HEI_NEAR_CLOSE = 2;
-    const uint8_t HEI_CLOSE_MID  = 3;
-    const uint8_t HEI_MID        = 4;
-    const uint8_t HEI_OPEN_MID   = 5;
-    const uint8_t HEI_NEAR_OPEN  = 6;
-    const uint8_t HEI_OPEN       = 7;
-
-    const uint8_t BAC_NONE       = 0;
-    const uint8_t BAC_FRONT      = 1;
-    const uint8_t BAC_NEAR_FRONT = 2;
-    const uint8_t BAC_CENTRAL    = 3;
-    const uint8_t BAC_NEAR_BACK  = 4;
-    const uint8_t BAC_BACK       = 5;
-
-    const uint8_t ROU_NONE      = 0;
-    const uint8_t ROU_UNROUNDED = 1;
-    const uint8_t ROU_RESERVED  = 2;
-    const uint8_t ROU_ROUNDED   = 3;
-
-    typedef struct PhonemeProperties    // 24-32 Byte
+    enum HEI
     {
-        uint8_t type       : 5;
-        uint8_t reserved_1 : 3;         // 1 Byte
-        uint8_t voicing    : 4;
-        uint8_t release    : 4;         // 1 Byte
-        uint8_t height     : 3;
-        uint8_t backness   : 3;
-        uint8_t roundness  : 2;         // 1 Byte
-        uint8_t reserved_2;             // 1 Byte
-        uint16_t poa;                   // 2 Byte
-        uint16_t moa;                   // 2 Byte
-        uint16_t reserved_3;            // 2 Byte
-        uint16_t privateUse_1;          // 2 Byte
-        uint32_t privateUse_2;          // 4 Byte
-        void* reserved_4;               // 4-8 Byte
-        void* privateUse_3;             // 4-8 Byte
+        HEI_NONE       = 0,
+        HEI_CLOSE      = 1,
+        HEI_NEAR_CLOSE = 2,
+        HEI_CLOSE_MID  = 3,
+        HEI_MID        = 4,
+        HEI_OPEN_MID   = 5,
+        HEI_NEAR_OPEN  = 6,
+        HEI_OPEN       = 7
+    };
+
+    enum BAC
+    {
+        BAC_NONE       = 0,
+        BAC_FRONT      = 1,
+        BAC_NEAR_FRONT = 2,
+        BAC_CENTRAL    = 3,
+        BAC_NEAR_BACK  = 4,
+        BAC_BACK       = 5
+    };
+
+    enum ROU
+    {
+        ROU_NONE      = 0,
+        ROU_UNROUNDED = 1,
+        ROU_RESERVED  = 2,
+        ROU_ROUNDED   = 3
+    };
+
+    typedef uint8_t Type;
+    typedef uint8_t Voicing;
+    typedef uint8_t Release;
+    typedef uint8_t Height;
+    typedef uint8_t Backness;
+    typedef uint8_t Roundness;
+    typedef uint16_t PoA;
+    typedef uint16_t MoA;
+
+    typedef struct PhonemeProperties
+    {                                   // 24-32 Byte
+        Type      type       : 5;
+        uint8_t   reserved_1 : 3;       // 1 Byte
+        Voicing   voicing    : 4;
+        Release   release    : 4;       // 1 Byte
+        Height    height     : 3;
+        Backness  backness   : 3;
+        Roundness roundness  : 2;       // 1 Byte
+        uint8_t   reserved_2;           // 1 Byte
+        PoA       poa;                  // 2 Byte
+        MoA       moa;                  // 2 Byte
+        uint16_t  reserved_3;           // 2 Byte
+        uint16_t  privateUse_1;         // 2 Byte
+        uint32_t  privateUse_2;         // 4 Byte
+        void*     reserved_4;           // 4-8 Byte
+        void*     privateUse_3;         // 4-8 Byte
     } PhonemeProperties;
 
     typedef struct Phoneme
@@ -182,9 +215,9 @@ extern "C" {
         NULL
     };
 
-    UDSC2_API int phoneme_difference(const api::PhonemeProperties pLeft,
-                                     const api::PhonemeProperties pRight,
-                                     const api::PhonemeProperties ignore);
+    UDSC2_API int phoneme_difference(const PhonemeProperties pLeft,
+                                     const PhonemeProperties pRight,
+                                     const PhonemeProperties ignore);
 
 #ifdef __cplusplus
     }

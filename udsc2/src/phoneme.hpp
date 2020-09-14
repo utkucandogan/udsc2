@@ -14,6 +14,7 @@ class Phoneme
 {
 public:
     using Properties = api::PhonemeProperties;
+    using List       = std::vector<Phoneme>;
 
     std::u32string string;
     Properties properties;

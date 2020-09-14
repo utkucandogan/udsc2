@@ -76,6 +76,12 @@ project "udsc2"
         kind "SharedLib"
         defines "UDSC2_SHARED"
 
+    filter "architecture:x32"
+        defines "UDSC2_X32"
+
+    filter "architecture:x64"
+        defines "UDSC2_X64"
+
     filter "toolset:msc-*"
         buildoptions {
             "/Zc:__cplusplus",
@@ -126,6 +132,12 @@ project "tests"
     filter "configurations:*-Shared"
         defines "UDSC2_SHARED"
 
+    filter "architecture:x32"
+        defines "UDSC2_X32"
+
+    filter "architecture:x64"
+        defines "UDSC2_X64"
+
     filter "toolset:msc-*"
         buildoptions {
             "/Zc:__cplusplus",
@@ -166,6 +178,12 @@ project "sandbox"
     filter "configurations:Release-*"
         defines "UDSC2_RELEASE"
         optimize "On"
+
+    filter "architecture:x32"
+        defines "UDSC2_X32"
+
+    filter "architecture:x64"
+        defines "UDSC2_X64"
 
     filter "toolset:msc-*"
         buildoptions {

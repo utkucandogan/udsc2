@@ -22,6 +22,7 @@ Phoneme Prenasal::creator(const std::u32string_view s, size_t& i)
             return ret;
         }
     }
+    [[fallthrough]];
     default:
         return Phoneme::NONE;
     }

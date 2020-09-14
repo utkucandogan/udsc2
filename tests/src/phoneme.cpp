@@ -140,6 +140,17 @@ auto r = Phoneme { U"ɾ", Phoneme::Properties {
 } };
 #pragma endregion
 
+TEST_CASE("Testing PhonemeProperties size.", "[Phoneme::PhonemeProperties]")
+{
+#ifdef UDSC2_X32
+    REQUIRE(sizeof(api::PhonemeProperties) == 24U);
+#endif
+
+#ifdef UDSC2_X64
+    REQUIRE(sizeof(api::PhonemeProperties) == 32U);
+#endif
+}
+
 TEST_CASE("Testing phoneme creation.", "[Phoneme::create]")
 {
     Phoneme::prefixHandlers.clear();
